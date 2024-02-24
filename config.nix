@@ -9,8 +9,6 @@
   nixpkgs.config.allowUnfree = true;
 
   nix = {
-    registry = lib.mapAttrs (_: value: {flake = value;}) inputs;
-
     nixPath = lib.mapAttrsToList (key: _: "${key}=flake:${key}") config.nix.registry;
 
     settings = {
@@ -28,6 +26,7 @@
   time.timeZone = "Europe/Amsterdam";
   i18n.defaultLocale = "en_US.UTF-8";
 
+  hardware.pulseaudio.enable = false;
   security.rtkit.enable = true;
   services.pipewire = {
     enable = true;
@@ -37,7 +36,8 @@
     jack.enable = true;
   };
 
-  users.mutableUsers = false;
+ #Users
+ users.mutableUsers = false;
 
   users.users.crift = {
     isNormalUser = true;
@@ -48,12 +48,18 @@
     ];
   };
 
-  users.users.root.hashedPassword = !
+  users.users.root.hashedPassword = "!";
 
+  #UI
   services.xserver.enable = true;
   services.xserver.displayManager.gdm.enable = true;
   services.xserver.desktopManager.gnome.enable = true;
 
+  #Tools
+  programs.neovim.enable = true;
+  
+  programs.git.enable = true;
+  
   services.openssh.enable = true;
   system.stateVersion = "24.05";
 }
