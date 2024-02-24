@@ -7,7 +7,18 @@
     ];
 
   nixpkgs.config.allowUnfree = true;
-  
+
+  nix = {
+    registry = lib.mapAttrs (_: value: {flake = value;}) inputs;
+
+    nixPath = lib.mapAttrsToList (key: _: "${key}=flake:${key}") config.nix.registry;
+
+    settings = {
+      experimental-features = "nix-command flakes";
+      auto-optimise-store = true;
+    };
+  };
+
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
   
@@ -26,6 +37,8 @@
     jack.enable = true;
   };
 
+  users.mutableUsers = false;
+
   users.users.crift = {
     isNormalUser = true;
     password = "InitCrift"; 
@@ -34,6 +47,8 @@
       firefox
     ];
   };
+
+  users.users.root.hashedPassword = !
 
   services.xserver.enable = true;
   services.xserver.displayManager.gdm.enable = true;
