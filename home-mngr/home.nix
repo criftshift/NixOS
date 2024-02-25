@@ -10,7 +10,8 @@
     ./dev-conf
   ];
 
-  nixpkgs.config.allowUnfree = true;
+  # I would like to use the same pkgs as main nix but it can't find
+  nixpkgs.config.allowUnfree = true; 
   home.stateVersion = "24.05";
 }
 
