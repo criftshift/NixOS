@@ -1,11 +1,16 @@
 { config, pkgs, ... }:
 
 {
+  programs.home-manager.enable = true;
+  
   home.username = "crift";
   home.homeDirectory = "/home/crift";
 
-  home.stateVersion = "24.05";
+  imports = [
+    ./dev-conf
+  ];
 
-  programs.home-manager.enable = true;
+  nixpkgs.config.allowUnfree = true;
+  home.stateVersion = "24.05";
 }
 

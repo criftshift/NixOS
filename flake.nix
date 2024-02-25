@@ -9,6 +9,7 @@
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
+      #useGlobalPkgs = true;
     };
   };
 
@@ -17,10 +18,10 @@
       CriftDesk = nixpkgs.lib.nixosSystem {
         specialArgs = {inherit inputs;};
         modules = [
-	  ./config.nix 
-	  ./dev
-	  inputs.home-manager.nixosModules.default #i don't get this yet
-	];
+          inputs.home-manager.nixosModules.default
+          ./config.nix 
+          ./dev
+        ];
       };
     };
   };

@@ -6,15 +6,17 @@
       ./hardware-configuration.nix
     ];
 
+  nixpkgs.config.allowUnfree = true;
+
   #Homemanager
   home-manager = {
     extraSpecialArgs = {inherit inputs; }; #I still need to understand this better
     users = {
       crift = import ./home-mngr/home.nix;
-    };
+    };  
   }; 
+  
 
-  nixpkgs.config.allowUnfree = true;
 
   nix = {
     nixPath = lib.mapAttrsToList (key: _: "${key}=flake:${key}") config.nix.registry;
