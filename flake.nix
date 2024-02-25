@@ -21,6 +21,7 @@
           inputs.home-manager.nixosModules.default
           ./config.nix 
           ./dev
+          ./common
         ];
       };
     };
