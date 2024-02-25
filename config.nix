@@ -68,7 +68,8 @@
   #Tools
   programs.neovim.enable = true;
   programs.git.enable = true;
-  
+  programs.noisetorch.enable = true; #Required for noise supression 
+
   services.openssh.enable = true;
   system.stateVersion = "24.05";
 }
