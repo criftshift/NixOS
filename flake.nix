@@ -6,13 +6,22 @@
     #hardware.url = "github:NixOS/nixos-hardware";
     #impermanence.url = "github:nix-community/impermanence";
     #agenix.url = "github:ryantm/agenix";
+    home-manager = {
+      url = "github:nix-community/home-manager";
+      inputs.nixpkgs.follows = "nixpkgs";
+      #useGlobalPkgs = true;
+    };
   };
 
-  outputs = {nixpkgs, ...} @ inputs: {
+  outputs = { self, nixpkgs, ...} @inputs: {
     nixosConfigurations = {
       CriftDesk = nixpkgs.lib.nixosSystem {
         specialArgs = {inherit inputs;};
-        modules = [./config.nix];
+        modules = [
+          inputs.home-manager.nixosModules.default
+          ./config.nix 
+          ./dev
+        ];
       };
     };
   };

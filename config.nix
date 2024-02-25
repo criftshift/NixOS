@@ -1,4 +1,4 @@
-{ config, lib, pkgs, ... }:
+{ inputs, config, lib, pkgs, ... }:
 
 {
   imports =
@@ -7,6 +7,16 @@
     ];
 
   nixpkgs.config.allowUnfree = true;
+
+  #Homemanager
+  home-manager = {
+    extraSpecialArgs = {inherit inputs; }; #I still need to understand this better
+    users = {
+      crift = import ./home-mngr/home.nix;
+    };  
+  }; 
+  
+
 
   nix = {
     nixPath = lib.mapAttrsToList (key: _: "${key}=flake:${key}") config.nix.registry;
