@@ -1,10 +1,18 @@
-{ config, lib, pkgs, ... }:
+{ inputs, config, lib, pkgs, ... }:
 
 {
   imports =
     [ 
       ./hardware-configuration.nix
     ];
+
+  #Homemanager
+  home-manager = {
+    extraSpecialArgs = {inherit inputs; }; #I still need to understand this better
+    users = {
+      crift = import ./home-mngr/home.nix;
+    };
+  }; 
 
   nixpkgs.config.allowUnfree = true;
 
