@@ -62,14 +62,14 @@
 
   #UI
   services.xserver.enable = true;
-  services.xserver.displayManager.gdm.enable = true;
-  services.xserver.desktopManager.gnome.enable = true;
-  #programs.hyprland.enable = true;
+  #services.xserver.displayManager.gdm.enable = true;
+  #services.xserver.desktopManager.gnome.enable = true;  
+
   #Tools
   programs.neovim.enable = true;
-  programs.git.enable = true;
   programs.noisetorch.enable = true; #Required for noise supression 
-
+  programs.direnv.enable = true;
+  
   services.openssh.enable = true;
   system.stateVersion = "24.05";
 }

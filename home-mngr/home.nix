@@ -8,6 +8,8 @@
 
   imports = [
     ./dev-conf
+    ./ui-conf
+    ./tool-conf
   ];
 
   # I would like to use the same pkgs as main nix but it can't find
