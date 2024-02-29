@@ -4,5 +4,6 @@
     ./waybar.nix
     ./waybarCss.nix
     ./applauncher.nix
+    ./startup.nix
   ];
 }

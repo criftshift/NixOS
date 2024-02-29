@@ -7,6 +7,9 @@
       rounding = 12;
     };
 
+    debug = {
+      disable_logs = false;
+    };
     bind =
       #General Bindings
       [

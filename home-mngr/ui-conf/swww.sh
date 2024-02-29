@@ -1,4 +1,3 @@
-#!/bin/bash
 if [ ! -d /home/crift/wallpaper ]; 
 then mkdir /home/crift/wallpaper; fi  
 if [ ! -f /home/crift/wallpaper/wp ]; 
