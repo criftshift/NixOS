@@ -16,9 +16,9 @@
     };  
   }; 
   
-
-
   nix = {
+    registry = lib.mapAttrs (_: value: {flake = value;}) inputs;
+
     nixPath = lib.mapAttrsToList (key: _: "${key}=flake:${key}") config.nix.registry;
 
     settings = {
@@ -60,16 +60,31 @@
 
   users.users.root.hashedPassword = "!";
 
-  #UI
-  services.xserver.enable = true;
-  services.xserver.displayManager.gdm.enable = true;
-  services.xserver.desktopManager.gnome.enable = true;
-  #programs.hyprland.enable = true;
   #Tools
-  programs.neovim.enable = true;
-  programs.git.enable = true;
-  programs.noisetorch.enable = true; #Required for noise supression 
+  programs = {
+    neovim.enable = true;
+    noisetorch.enable = true; #Required for noise supression 
+    direnv.enable = true;
+    regreet.enable = true;
+    xwayland.enable = true;  
+    
+    gamemode = {
+      enable = true;
+      settings = {
+        general = {
+          renice = 10;
+        };
+      };
+    };
+  };
 
-  services.openssh.enable = true;
+  services = {
+    greetd = {
+      enable = true;
+      #--asterisks if you are afraid of invisible input
+      settings.default_session.command = "${lib.getExe pkgs.greetd.tuigreet} --time --remember-user-session --cmd Hyprland";
+    };
+    openssh.enable = true;
+  };
   system.stateVersion = "24.05";
 }

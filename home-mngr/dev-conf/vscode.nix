@@ -9,6 +9,7 @@
       pkgs.vscode-extensions.ms-dotnettools.csharp
       pkgs.vscode-extensions.jnoortheen.nix-ide
       pkgs.vscode-extensions.aaron-bond.better-comments
+      pkgs.vscode-extensions.mkhl.direnv
     ];
   };
 }
