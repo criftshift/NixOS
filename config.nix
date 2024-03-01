@@ -61,12 +61,23 @@
   users.users.root.hashedPassword = "!";
 
   #Tools
-  programs.neovim.enable = true;
-  programs.noisetorch.enable = true; #Required for noise supression 
-  programs.direnv.enable = true;
-  programs.regreet.enable = true;
-  programs.xwayland.enable = true;  
-  
+  programs = {
+    neovim.enable = true;
+    noisetorch.enable = true; #Required for noise supression 
+    direnv.enable = true;
+    regreet.enable = true;
+    xwayland.enable = true;  
+    
+    gamemode = {
+      enable = true;
+      settings = {
+        general = {
+          renice = 10;
+        };
+      };
+    };
+  };
+
   services = {
     greetd = {
       enable = true;
